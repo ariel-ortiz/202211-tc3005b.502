@@ -36,11 +36,28 @@ class Racional:
         return (self.__numerador * other.__denominador
             < self.__denominador * other.__numerador)
 
+    def __neg__(self):
+        return Racional(-self.__numerador, self.__denominador)
+
+    def __invert__(self):
+        return Racional(self.__denominador, self.__numerador)
+
     def __add__(self, other):
         return Racional(
             self.__numerador * other.__denominador +
                 self.__denominador * other.__numerador,
             self.__denominador * other.__denominador)
+
+    def __sub__(self, other):
+        return self + -other
+
+    def __mul__(self, other):
+        return Racional(
+            self.__numerador * other.__numerador,
+            self.__denominador * other.__denominador)
+
+    def __truediv__(self, other):
+        return self * ~other
 
     def __int__(self):
         return self.__numerador // self.__denominador
@@ -77,3 +94,9 @@ print(f'int(b):        {int(b)}')
 print(f'float(b):      {float(b)}')
 s = {a, e, d}
 print(f's:             {s}')
+print(f'd * e:         {d * e}')
+print(f'-c:            {-c}')
+print(f'd - e:         {d - e}')
+print(f'~c:            {~c}')
+print(f'd / e:         {d / e}')
+
